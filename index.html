@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tip Your Waiter</title>
+</head>
+<body>
+    <h1>Tip Your Waiter</h1>
+    
+    <!-- Dropdown to select workers -->
+    <label for="worker">Select Worker:</label>
+    <select id="worker">
+        <option value="6301918775@ybl">Bhanu</option>
+    </select>
+    <br><br>
+    
+    <!-- Input to enter the tip amount -->
+    <label for="amount">Amount (INR):</label>
+    <input type="text" id="amount" value="20" />
+    <button onclick="generateUPILink()">Generate UPI Link</button>
+    
+    <!-- Container to show UPI payment link -->
+    <div id="upi-link-container" style="display:none;">
+        <p>Pay <span id="amount-display"></span> to Bhanu:</p>
+        <a id="upi-link" href="#" target="_blank">Pay Now via UPI</a>
+    </div>
+
+    <script>
+        function generateUPILink() {
+            const worker = document.getElementById("worker").value;
+            const amount = document.getElementById("amount").value;
+
+            // Generate UPI link
+            const upiLink = `upi://pay?pa=${worker}&pn=Bhanu&am=${amount}&cu=INR`;
+
+            console.log(upiLink);  // Log the UPI link to the console
+
+            // Show the UPI link
+            document.getElementById("upi-link").href = upiLink;
+            document.getElementById("upi-link-container").style.display = 'block';
+            document.getElementById("amount-display").textContent = amount;
+        }
+    </script>
+</body>
+</html>
